@@ -16,8 +16,18 @@ namespace CityFinder
         }
     }
 
-    class CitySearch : ICityFinder
+    class CitySearch : ICityFinder, ICityResult
     {
+        public ICollection<string> NextLetters { 
+            get => throw new NotImplementedException(); 
+            set => throw new NotImplementedException(); 
+        }
+
+        public ICollection<string> NextCities { 
+            get => throw new NotImplementedException(); 
+            set => throw new NotImplementedException(); 
+        }
+
         public ICityResult Search(string searchString)
         {
             while (1 > 0)
