@@ -10,7 +10,9 @@ namespace CityFinder
     {
         static void Main(string[] args)
         {
-            CitySearch search = new CitySearch();
+            CitySearch citySearch = new CitySearch();
+
+            citySearch.Search(" ");
         }
     }
 
@@ -18,6 +20,15 @@ namespace CityFinder
     {
         public ICityResult Search(string searchString)
         {
+            while (1 > 0)
+            {
+                Console.Write("Enter a city name: ");
+                searchString = Console.ReadLine();
+
+                Console.WriteLine("You entered {0}", searchString);
+            }
+            
+
             throw new NotImplementedException();
         }
     }
