@@ -10,9 +10,34 @@ namespace CityFinder
     {
         static void Main(string[] args)
         {
+
+            //Logic flags
+            bool programRunning = true;
+
+            //Variables
+            string cityName = "";
+
+            //Initialise classes
             CitySearch citySearch = new CitySearch();
 
-            citySearch.Search(" ");
+            //Main program starts here.
+            //All code written after this point is executed - unless its an exception.
+            while (programRunning == true)
+            {
+                Console.Write("Please enter a city name: ");
+                cityName = Console.ReadLine();
+
+                //citySearch.Search(cityName);
+
+                //Return cities
+                Console.WriteLine("Cities returned starting with {0}", cityName);
+                Console.WriteLine("City List: a, b, c");
+
+                //Return names
+                Console.WriteLine("Next letters to use after your current search term {0}", cityName);
+                Console.WriteLine("Character List: a, b, c");
+
+            }
         }
     }
 
@@ -30,19 +55,26 @@ namespace CityFinder
 
         public ICityResult Search(string searchString)
         {
-            while (1 > 0)
+            try
             {
-                Console.Write("Enter a city name: ");
-                searchString = Console.ReadLine();
-
-                Console.WriteLine("You entered {0}", searchString);
+                
             }
-            
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while searching for cities!");
+            }
 
-            throw new NotImplementedException();
+            //Simple error message
+            Console.WriteLine("Invalid input!");
         }
     }
 }
+
+
+/// <summary>
+/// Interfaces to use.
+/// Included in the main search class.
+/// </summary>
 
 namespace CityFinder
 {
