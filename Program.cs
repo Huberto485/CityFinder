@@ -39,11 +39,14 @@ namespace CityFinder
             //Cities with D
             citySearch.cities.Add("Dresden");
             citySearch.cities.Add("Detroit");
-            citySearch.cities.Add("Barcelona");
+            citySearch.cities.Add("Dortmund");
             citySearch.cities.Add("Dusseldorf");
             citySearch.cities.Add("Drawno");
             citySearch.cities.Add("Dublin");
             citySearch.cities.Add("Dover");
+
+            //Sort cities into an alphabetical order
+            citySearch.cities.Sort();
 
             //Main program starts here.
             //All code written after this point is executed - unless its an exception.
@@ -76,15 +79,20 @@ namespace CityFinder
             NextLetters = new List<string>();
             NextCities = new List<string>();
 
-            //Look for cities
+            //Set a variable to hold city substring data
+            string partSearch;
+
+            //Use a binary search to find cities
             for (int i = 0; i < cities.Count(); i++ )
             {
-                string partSearch = "";
-
+                
+                //Make sure words shorter than the search string are not included
                 if (searchString.Length < cities[i].Length)
                 {
+                    //
                     partSearch = cities[i].Substring(0, searchString.Length);
                     
+                    //Check if substring matches 
                     if (string.Equals(searchString, partSearch))
                     {
 
@@ -99,6 +107,8 @@ namespace CityFinder
                     }
                 }
             }
+            
+            
 
             //Show a list of next characters the user can type
             if (NextLetters.Count() > 0 && NextLetters.Count() <= 5)
