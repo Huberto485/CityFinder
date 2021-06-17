@@ -22,9 +22,9 @@ namespace CityFinder
             CitySearch citySearch = new CitySearch();
             
             //Cities with L
-            citySearch.cities.Add("Lachen");
-            citySearch.cities.Add("Lauswitz");
-            citySearch.cities.Add("Lattens");
+            citySearch.cities.Add("London");
+            citySearch.cities.Add("Lublin");
+            citySearch.cities.Add("Lucca");
             citySearch.cities.Add("La Plata");
             citySearch.cities.Add("Lippen");
             citySearch.cities.Add("Leeds");
@@ -36,6 +36,14 @@ namespace CityFinder
             citySearch.cities.Add("Bialystok");
             citySearch.cities.Add("Barcelona");
 
+            //Cities with D
+            citySearch.cities.Add("Dresden");
+            citySearch.cities.Add("Detroit");
+            citySearch.cities.Add("Barcelona");
+            citySearch.cities.Add("Dusseldorf");
+            citySearch.cities.Add("Drawno");
+            citySearch.cities.Add("Dublin");
+            citySearch.cities.Add("Dover");
 
             //Main program starts here.
             //All code written after this point is executed - unless its an exception.
@@ -99,7 +107,7 @@ namespace CityFinder
                 
                 for (int i = 0; i < NextLetters.Count(); i++)
                 {
-                    if (i == NextLetters.Count())
+                    if (i == NextLetters.Count() - 1)
                     {
                         Console.Write("'{0}'", NextLetters[i]);
                     }
@@ -115,7 +123,7 @@ namespace CityFinder
 
                 for (int i = 0; i < 5; i++)
                 {
-                    if (i == 4)
+                    if (i == 5 - 1)
                     {
                         Console.Write("'{0}'", NextLetters[i]);
                     }
@@ -130,11 +138,13 @@ namespace CityFinder
                 Console.Write("\nThere are no character suggestions!");
             }
 
-            //Show a list of cities corresponding to user input
+            //Show a list cities corresponding to user input
             if (NextCities.Count() > 0 && NextCities.Count() <= 5)
             {
+                //Inform the user of cities
                 Console.Write("\nCities to view are ");
 
+                //Show all the exact cities
                 for (int i = 0; i < NextCities.Count(); i++)
                 {
                     if (i == NextCities.Count() - 1)
@@ -151,9 +161,10 @@ namespace CityFinder
             {
                 Console.Write("\nCities to view are ");
 
+                //Output first 5 cities in the list
                 for (int i = 0; i < 5; i++)
                 {
-                    if (i == 4)
+                    if (i == 5 - 1)
                     {
                         Console.Write("'{0}'", NextCities[i]);
                     }
@@ -168,7 +179,6 @@ namespace CityFinder
                 Console.Write("\nThere are no city suggestions!");
             }
             
-
             Console.Write("\n");
         }
     }
