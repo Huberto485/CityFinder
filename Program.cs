@@ -8,6 +8,9 @@ namespace CityFinder
 {
     class Program
     {
+        
+        
+        
         static void Main(string[] args)
         {
 
@@ -19,11 +22,13 @@ namespace CityFinder
 
             //Initialise classes
             CitySearch citySearch = new CitySearch();
-
-            //Initiealise cities list
-            List<string> cities = new List<string>();
-
-            //Add some data
+            
+            citySearch.cities.Add("Lachen");
+            citySearch.cities.Add("Lauswitz");
+            citySearch.cities.Add("Lattens");
+            citySearch.cities.Add("La Plata");
+            citySearch.cities.Add("Lippen");
+            citySearch.cities.Add("Leeds");
 
             //Main program starts here.
             //All code written after this point is executed - unless its an exception.
@@ -33,51 +38,68 @@ namespace CityFinder
                 cityName = Console.ReadLine();
 
                 citySearch.Search(cityName);
-
-                //Return cities
-                Console.WriteLine("Cities returned starting with {0}", cityName);
-                Console.WriteLine("City List: a, b, c");
-
-                //Return names
-                Console.WriteLine("Next letters to use after your current search term {0}", cityName);
-                Console.WriteLine("Character List: a, b, c");
-
             }
         }
     }
 
     class CitySearch : ICityFinder, ICityResult
     {
+        public List<string> cities = new List<string>();
+
         public List<string> NextLetters { get; set; }
         public List<string> NextCities { get; set; }
 
         public void Search(string searchString)
         {
+            //Initialise NextLetters and NextCities lists
+            NextLetters = new List<string>();
+            NextCities = new List<string>();
+
+            for (int i = 0; i < cities.Count(); i++ )
+            {
+                string partSearch = "";
+                partSearch = cities[i].Substring(0, searchString.Length);
+
+                if (string.Equals(searchString, partSearch))
+                {
+                    string letter = cities[i].Substring(searchString.Length, 1);
+
+                    if (NextLetters.Contains(letter) == false)
+                    {
+                        NextLetters.Add(letter);
+                    }
+
+                }
+            }
+
+            Console.Write("Try typing next letters like ");
+
+            for (int i = 0; i < NextLetters.Count(); i++)
+            {
+                if (i == NextLetters.Count() - 1)
+                {
+                    Console.Write("'{0}'", NextLetters[i]);
+                }
+                else
+                {
+                    Console.Write("'{0}', ", NextLetters[i]);
+                }
+            }
+
+            Console.Write("\n");
+
         }
     }
-}
-
-
-/// <summary>
-/// Interfaces to use.
-/// Included in the main search class.
-/// </summary>
-
-namespace CityFinder
-{
+    
     public interface ICityResult
     {
         List<string> NextLetters { get; set; }
 
         List<string> NextCities { get; set; }
     }
-}
 
-namespace CityFinder
-{
     public interface ICityFinder
     {
         void Search(string searchString);
     }
 }
-
