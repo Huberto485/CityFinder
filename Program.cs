@@ -14,7 +14,7 @@ namespace CityFinder
 
             //Logic flags
             bool programRunning = true;
-            bool testing = true;
+            bool testing = false;
 
             //Variables
             string cityName = "";
