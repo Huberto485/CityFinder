@@ -82,14 +82,13 @@ namespace CityFinder
             //Set a variable to hold city substring data
             string partSearch;
 
-            //Use a binary search to find cities
+            //Use a linear search to find cities
             for (int i = 0; i < cities.Count(); i++ )
             {
                 
                 //Make sure words shorter than the search string are not included
                 if (searchString.Length < cities[i].Length)
                 {
-                    //
                     partSearch = cities[i].Substring(0, searchString.Length);
                     
                     //Check if substring matches 
@@ -107,8 +106,6 @@ namespace CityFinder
                     }
                 }
             }
-            
-            
 
             //Show a list of next characters the user can type
             if (NextLetters.Count() > 0 && NextLetters.Count() <= 5)
@@ -145,6 +142,7 @@ namespace CityFinder
             }
             else
             {
+                //Show output if there are no characters to suggest
                 Console.Write("\nThere are no character suggestions!");
             }
 
@@ -169,7 +167,7 @@ namespace CityFinder
             }
             else if (NextCities.Count() > 5)
             {
-                Console.Write("\nCities to view are ");
+                Console.Write("\nSome cities to view are ");
 
                 //Output first 5 cities in the list
                 for (int i = 0; i < 5; i++)
@@ -186,6 +184,7 @@ namespace CityFinder
             }
             else
             {
+                //Show output if there are no cities to suggest
                 Console.Write("\nThere are no city suggestions!");
             }
             
