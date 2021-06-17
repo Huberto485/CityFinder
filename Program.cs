@@ -9,8 +9,6 @@ namespace CityFinder
     class Program
     {
         
-        
-        
         static void Main(string[] args)
         {
 
@@ -22,7 +20,8 @@ namespace CityFinder
 
             //Initialise classes
             CitySearch citySearch = new CitySearch();
- 
+            
+            //Cities with L
             citySearch.cities.Add("Lachen");
             citySearch.cities.Add("Lauswitz");
             citySearch.cities.Add("Lattens");
@@ -30,15 +29,26 @@ namespace CityFinder
             citySearch.cities.Add("Lippen");
             citySearch.cities.Add("Leeds");
 
+            //Cities with B
+            citySearch.cities.Add("Birmingham");
+            citySearch.cities.Add("Brussels");
+            citySearch.cities.Add("Bremen");
+            citySearch.cities.Add("Bialystok");
+            citySearch.cities.Add("Barcelona");
+
+
             //Main program starts here.
             //All code written after this point is executed - unless its an exception.
             while (programRunning == true)
             {
+                //Wait for user input
                 Console.Write("Please enter a city name: ");
                 cityName = Console.ReadLine();
 
+                //Use the search algorithm
                 citySearch.Search(cityName);
 
+                //Purge console when ready
                 Console.ReadLine();
                 Console.Clear();
             }
@@ -58,10 +68,10 @@ namespace CityFinder
             NextLetters = new List<string>();
             NextCities = new List<string>();
 
+            //Look for cities
             for (int i = 0; i < cities.Count(); i++ )
             {
                 string partSearch = "";
-
 
                 if (searchString.Length < cities[i].Length)
                 {
@@ -80,21 +90,32 @@ namespace CityFinder
                         }
                     }
                 }
-                else
-                {
-
-                }
             }
 
-            
-
-            if (NextLetters.Count() > 0)
+            //Show a list of next characters the user can type
+            if (NextLetters.Count() > 0 && NextLetters.Count() <= 5)
             {   
                 Console.Write("Try typing next letters like ");
                 
                 for (int i = 0; i < NextLetters.Count(); i++)
                 {
-                    if (i == NextLetters.Count() - 1)
+                    if (i == NextLetters.Count())
+                    {
+                        Console.Write("'{0}'", NextLetters[i]);
+                    }
+                    else
+                    {
+                        Console.Write("'{0}', ", NextLetters[i]);
+                    }
+                }
+            }
+            else if (NextLetters.Count() > 5)
+            {
+                Console.Write("Try typing next letters like ");
+
+                for (int i = 0; i < 5; i++)
+                {
+                    if (i == 4)
                     {
                         Console.Write("'{0}'", NextLetters[i]);
                     }
@@ -106,10 +127,11 @@ namespace CityFinder
             }
             else
             {
-                Console.Write("\nThere are no more character suggestions!");
+                Console.Write("\nThere are no character suggestions!");
             }
 
-            if (NextCities.Count() > 0)
+            //Show a list of cities corresponding to user input
+            if (NextCities.Count() > 0 && NextCities.Count() <= 5)
             {
                 Console.Write("\nCities to view are ");
 
@@ -125,9 +147,25 @@ namespace CityFinder
                     }
                 }
             }
+            else if (NextCities.Count() > 5)
+            {
+                Console.Write("\nCities to view are ");
+
+                for (int i = 0; i < 5; i++)
+                {
+                    if (i == 4)
+                    {
+                        Console.Write("'{0}'", NextCities[i]);
+                    }
+                    else
+                    {
+                        Console.Write("'{0}', ", NextCities[i]);
+                    }
+                }
+            }
             else
             {
-                Console.Write("\nThere are no more city suggestions!");
+                Console.Write("\nThere are no city suggestions!");
             }
             
 
