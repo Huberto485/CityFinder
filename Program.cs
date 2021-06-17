@@ -20,6 +20,11 @@ namespace CityFinder
             //Initialise classes
             CitySearch citySearch = new CitySearch();
 
+            //Initiealise cities list
+            List<string> cities = new List<string>();
+
+            //Add some data
+
             //Main program starts here.
             //All code written after this point is executed - unless its an exception.
             while (programRunning == true)
@@ -27,7 +32,7 @@ namespace CityFinder
                 Console.Write("Please enter a city name: ");
                 cityName = Console.ReadLine();
 
-                //citySearch.Search(cityName);
+                citySearch.Search(cityName);
 
                 //Return cities
                 Console.WriteLine("Cities returned starting with {0}", cityName);
@@ -43,29 +48,11 @@ namespace CityFinder
 
     class CitySearch : ICityFinder, ICityResult
     {
-        public ICollection<string> NextLetters { 
-            get => throw new NotImplementedException(); 
-            set => throw new NotImplementedException(); 
-        }
+        public List<string> NextLetters { get; set; }
+        public List<string> NextCities { get; set; }
 
-        public ICollection<string> NextCities { 
-            get => throw new NotImplementedException(); 
-            set => throw new NotImplementedException(); 
-        }
-
-        public ICityResult Search(string searchString)
+        public void Search(string searchString)
         {
-            try
-            {
-                
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while searching for cities!");
-            }
-
-            //Simple error message
-            Console.WriteLine("Invalid input!");
         }
     }
 }
@@ -80,9 +67,9 @@ namespace CityFinder
 {
     public interface ICityResult
     {
-        ICollection<string> NextLetters { get; set; }
+        List<string> NextLetters { get; set; }
 
-        ICollection<string> NextCities { get; set; }
+        List<string> NextCities { get; set; }
     }
 }
 
@@ -90,7 +77,7 @@ namespace CityFinder
 {
     public interface ICityFinder
     {
-        ICityResult Search(string searchString);
+        void Search(string searchString);
     }
 }
 
