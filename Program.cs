@@ -14,6 +14,7 @@ namespace CityFinder
 
             //Logic flags
             bool programRunning = true;
+            bool testing = true;
 
             //Variables
             string cityName = "";
@@ -52,6 +53,145 @@ namespace CityFinder
             //All code written after this point is executed - unless its an exception.
             while (programRunning == true)
             {
+                if (testing == true)
+                {
+                    //Some simple unit testing
+                    //Test 1 - List populated
+                    try
+                    {
+                        if (citySearch.cities.Count() != -1)
+                        {
+                            Console.WriteLine("Test 1 - Pass");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Test 1 - Fail");
+                    }
+
+                    //Test 2 - Last value
+                    try
+                    {
+                        if (citySearch.cities[citySearch.cities.Count - 1] != null)
+                        {
+                            Console.WriteLine("Test 2 - Pass");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Test 2 - Fail");
+                    }
+
+                    //Test 3 - First value
+                    try
+                    {
+                        if (citySearch.cities[0] != null)
+                        {
+                            Console.WriteLine("Test 3 - Pass");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Test 3 - Fail");
+                    }
+
+                    //Test 4 - Lower out of bounds
+                    try
+                    {
+                        if (citySearch.cities[-1] != null)
+                        {
+                            Console.WriteLine("Test 4 - Fail");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Test 4 - Pass");
+                    }
+
+                    //Test 5 - Upper out of bounds
+                    try
+                    {
+                        if (citySearch.cities[citySearch.cities.Count] != null)
+                        {
+                            Console.WriteLine("Test 5 - Fail");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Test 5 - Pass");
+                    }
+
+                    //Test 6 - Valid search input
+                    try
+                    {
+                        citySearch.Search("London");
+
+                        Console.WriteLine("Test 6 - Pass");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Test 6 - Fail");
+                    }
+
+                    //Test 7 - Invalid search input
+                    try
+                    {
+                        citySearch.Search("Germany");
+
+                        Console.WriteLine("Test 7 - Pass");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Test 7 - Fail");
+                    }
+
+                    //Test 8 - NextLetters size is 0
+                    try
+                    {
+                        if (citySearch.NextLetters.Count() != 0)
+                        {
+                            Console.WriteLine("Test 8 - Fail");
+                        }
+
+                        Console.WriteLine("Test 8 - Pass");
+
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Test 8 - Fail");
+                    }
+
+                    //Test 9 - NextCities size is 0
+                    try
+                    {
+                        if (citySearch.NextCities.Count() != 0)
+                        {
+                            Console.WriteLine("Test 9 - Fail");
+                        }
+
+                        Console.WriteLine("Test 9 - Pass");
+
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Test 9 - Fail");
+                    }
+
+                    //Test 10 - Add value "Hamburg" to cities and search "Ham"
+                    //Expected output is "b" and "Hamburg"
+                    try
+                    {
+                        citySearch.cities.Add("Hamburg");
+                        citySearch.Search("Ham");
+                        Console.WriteLine("Test 10 - Pass");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Test 10 - Fail");
+                    }
+
+                }
+
                 //Wait for user input
                 Console.Write("Please enter a city name: ");
                 cityName = Console.ReadLine();
@@ -94,11 +234,12 @@ namespace CityFinder
                     //Check if substring matches 
                     if (string.Equals(searchString, partSearch))
                     {
-
+                        //Assign the letter after substring to a variable
                         string letter = cities[i].Substring(searchString.Length, 1);
 
                         NextCities.Add(cities[i]);
 
+                        //Check for pre-existing entries of same letter
                         if (NextLetters.Contains(letter) == false)
                         {
                             NextLetters.Add(letter);
