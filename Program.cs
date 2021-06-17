@@ -64,11 +64,12 @@ namespace CityFinder
                 {
                     string letter = cities[i].Substring(searchString.Length, 1);
 
+                    NextCities.Add(cities[i]);
+
                     if (NextLetters.Contains(letter) == false)
                     {
                         NextLetters.Add(letter);
                     }
-
                 }
             }
 
@@ -86,8 +87,21 @@ namespace CityFinder
                 }
             }
 
-            Console.Write("\n");
+            Console.Write("\nCities to view are ");
 
+            for (int i = 0; i < NextCities.Count(); i++)
+            {
+                if (i == NextCities.Count() - 1)
+                {
+                    Console.Write("'{0}'", NextCities[i]);
+                }
+                else
+                {
+                    Console.Write("'{0}', ", NextCities[i]);
+                }
+            }
+
+            Console.Write("\n");
         }
     }
     
