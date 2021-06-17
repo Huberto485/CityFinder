@@ -22,7 +22,7 @@ namespace CityFinder
 
             //Initialise classes
             CitySearch citySearch = new CitySearch();
-            
+ 
             citySearch.cities.Add("Lachen");
             citySearch.cities.Add("Lauswitz");
             citySearch.cities.Add("Lattens");
@@ -38,6 +38,9 @@ namespace CityFinder
                 cityName = Console.ReadLine();
 
                 citySearch.Search(cityName);
+
+                Console.ReadLine();
+                Console.Clear();
             }
         }
     }
@@ -58,48 +61,75 @@ namespace CityFinder
             for (int i = 0; i < cities.Count(); i++ )
             {
                 string partSearch = "";
-                partSearch = cities[i].Substring(0, searchString.Length);
 
-                if (string.Equals(searchString, partSearch))
+
+                if (searchString.Length < cities[i].Length)
                 {
-                    string letter = cities[i].Substring(searchString.Length, 1);
-
-                    NextCities.Add(cities[i]);
-
-                    if (NextLetters.Contains(letter) == false)
+                    partSearch = cities[i].Substring(0, searchString.Length);
+                    
+                    if (string.Equals(searchString, partSearch))
                     {
-                        NextLetters.Add(letter);
+
+                        string letter = cities[i].Substring(searchString.Length, 1);
+
+                        NextCities.Add(cities[i]);
+
+                        if (NextLetters.Contains(letter) == false)
+                        {
+                            NextLetters.Add(letter);
+                        }
+                    }
+                }
+                else
+                {
+
+                }
+            }
+
+            
+
+            if (NextLetters.Count() > 0)
+            {   
+                Console.Write("Try typing next letters like ");
+                
+                for (int i = 0; i < NextLetters.Count(); i++)
+                {
+                    if (i == NextLetters.Count() - 1)
+                    {
+                        Console.Write("'{0}'", NextLetters[i]);
+                    }
+                    else
+                    {
+                        Console.Write("'{0}', ", NextLetters[i]);
                     }
                 }
             }
-
-            Console.Write("Try typing next letters like ");
-
-            for (int i = 0; i < NextLetters.Count(); i++)
+            else
             {
-                if (i == NextLetters.Count() - 1)
-                {
-                    Console.Write("'{0}'", NextLetters[i]);
-                }
-                else
-                {
-                    Console.Write("'{0}', ", NextLetters[i]);
-                }
+                Console.Write("\nThere are no more character suggestions!");
             }
 
-            Console.Write("\nCities to view are ");
-
-            for (int i = 0; i < NextCities.Count(); i++)
+            if (NextCities.Count() > 0)
             {
-                if (i == NextCities.Count() - 1)
+                Console.Write("\nCities to view are ");
+
+                for (int i = 0; i < NextCities.Count(); i++)
                 {
-                    Console.Write("'{0}'", NextCities[i]);
-                }
-                else
-                {
-                    Console.Write("'{0}', ", NextCities[i]);
+                    if (i == NextCities.Count() - 1)
+                    {
+                        Console.Write("'{0}'", NextCities[i]);
+                    }
+                    else
+                    {
+                        Console.Write("'{0}', ", NextCities[i]);
+                    }
                 }
             }
+            else
+            {
+                Console.Write("\nThere are no more city suggestions!");
+            }
+            
 
             Console.Write("\n");
         }
